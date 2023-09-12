@@ -259,7 +259,9 @@ func (c *Cluster) MigrateMasterPod(podName spec.NamespacedName) error {
 			return fmt.Errorf("could not get master candidate pod: %v", err)
 		}
 	} else {
-		c.logger.Warningf("migrating single pod cluster %q, this will cause downtime of the Postgres cluster until pod is back", c.clusterName())
+		// c.logger.Warningf("migrating single pod cluster %q, this will cause downtime of the Postgres cluster until pod is back", c.clusterName())
+		c.logger.Warningf("Avafin: Not migration single pod cluster away. Delete pod if move away is necessary.")
+		return nil
 	}
 
 	// there are two cases for each postgres cluster that has its master pod on the node to migrate from:
